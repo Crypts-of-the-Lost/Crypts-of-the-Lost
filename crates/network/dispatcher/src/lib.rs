@@ -14,14 +14,17 @@ use bevy::{
 
 mod command_receiver;
 use command_receiver::process_incoming_commands;
+use handler::Certs;
 use protocol::{command::Command, event::Event};
 use tracing::info;
 
+use crate::command_receiver::CommandReceiver;
+
 /// Dispatcher plugin for ease of use
 #[derive(Debug)]
-pub struct Dispatcher;
+pub struct Network;
 
-impl Plugin for Dispatcher {
+impl Plugin for Network {
     fn build(&self, app: &mut bevy::app::App) {
         app.add_systems(Startup, setup)
             .add_systems(Update, process_incoming_commands);
@@ -29,9 +32,15 @@ impl Plugin for Dispatcher {
 }
 
 #[expect(unused)]
+#[expect(clippy::expect_used)]
 fn setup(mut commands: Commands) {
     info!("Setting up network");
 
     let (inbound_tx, inbound_rx) = tokio::sync::mpsc::unbounded_channel::<Command>();
     let (outbound_tx, outbound_rx) = tokio::sync::mpsc::unbounded_channel::<Event>();
+
+    let certs = Certs::read_from_file("./certs.pem", "./key.pem")
+        .expect("A TLS certificate and private key (self- or externally-signed) are required to start a server.");
+
+    commands.insert_resource(CommandReceiver { rx: inbound_rx });
 }
