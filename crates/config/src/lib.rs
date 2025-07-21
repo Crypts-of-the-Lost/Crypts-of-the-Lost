@@ -5,10 +5,5 @@
 //! Defines the config struct used for the game server. Will be read from
 //! a TOML file and the CLI can override those settings.
 
-#![expect(clippy::multiple_crate_versions)]
-
-pub mod config;
+mod config;
 pub use config::Config;
-
-mod parse;
-pub use parse::parse_config;

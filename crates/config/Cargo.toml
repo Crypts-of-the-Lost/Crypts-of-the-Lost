@@ -10,9 +10,7 @@ keywords = ["config"]
 categories = ["games"]
 
 [dependencies]
-serde.workspace = true
-bevy.workspace = true
-konfik = "0.1"
+clap.workspace = true
 
 [lints]
 workspace = true
