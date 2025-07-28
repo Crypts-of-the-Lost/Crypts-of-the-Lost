@@ -3,32 +3,22 @@
 
 [workspace]
 members = [
-  "crates/server",
-  "crates/network",
-  "crates/protocol",
-  "crates/config",
-  "crates/mods",
-  "xtask",
+    "crates/server",
+    "crates/network",
+    "crates/protocol",
+    "xtask",
+    "crates/debug-client"
 ]
-resolver = "3"
+resolver = "2"
 
 [workspace.dependencies]
-protocol.path = "crates/protocol"
-network.path = "crates/network"
-config.path = "crates/config"
-
+protocol = { path = "crates/protocol" }
+network = { path = "crates/network" }
 clap = { version = "4.5.41", features = ["derive"] }
-
 thiserror = "2.0.12"
 tracing = "0.1.41"
-
-serde = { version = "1.0", features = ["derive"] }
-
-tokio = { version = "1.46.1", features = ["macros", "rt-multi-thread"] }
-
-[workspace.dependencies.bevy]
-version = "0.16.1"
-default-features = false
+bincode = "2.0.1"
+tokio = { version = "1.46.1", features = ["macros"] }
 
 [workspace.lints.rust]
 unsafe_code = "deny"
@@ -46,7 +36,6 @@ nursery = "deny"
 suspicious = "deny"
 complexity = "deny"
 style = "deny"
-needless_pass_by_value = { level = "allow", priority = 1 }
 perf = "deny"
 cargo = "deny"
 pedantic = "warn"
