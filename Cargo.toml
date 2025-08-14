@@ -4,13 +4,13 @@
 [workspace]
 members = [
     "crates/server",
-
     "crates/network",
-
     "crates/protocol",
-
     "crates/config",
-
+    "crates/game/enemy",
+    "crates/game/items",
+    "crates/game/player",
+    "crates/game/rooms",
     "xtask",
 ]
 resolver = "3"
