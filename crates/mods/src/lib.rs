@@ -16,7 +16,8 @@ pub(crate) mod toml;
 use crate::rhai::engine::get_default_engine;
 use crate::toml::{DependencyData, ModData, get_mods};
 use ::rhai::{Engine, ImmutableString};
-use bevy::app::App;
+use bevy::app::{App, PostStartup};
+use bevy::ecs::schedule::ScheduleLabel;
 use bevy::prelude::Plugin;
 use std::collections::{HashMap, HashSet};
 use std::rc::Rc;
@@ -27,6 +28,10 @@ pub const MOD_DIR: &str = "mods";
 
 /// The name of the toml file of each mod
 pub const MOD_CONFIG_FILE: &str = "mod.toml";
+
+const fn get_mod_load_schedule() -> impl ScheduleLabel {
+    PostStartup
+}
 
 /// # Modding Plugin
 /// Adds modding support to the main server bevy app.
@@ -45,7 +50,7 @@ pub const MOD_CONFIG_FILE: &str = "mod.toml";
 pub struct ModdingPlugin;
 
 impl Plugin for ModdingPlugin {
-    #[expect(clippy::unwrap_used, clippy::cognitive_complexity)]
+    #[expect(clippy::unwrap_used)]
     fn build(&self, app: &mut App) {
         let mods = get_mods();
         if let Err(e) = mods {
@@ -111,9 +116,7 @@ impl Plugin for ModdingPlugin {
 
             let engine = get_default_engine(mod_data.toml_data.data.name.as_str(), is_mod_enabled);
 
-            if let Err(e) = run_mod(app, mod_data, &engine) {
-                error!("Failed to run mod: {}", e);
-            }
+            add_mod(app, mod_data, engine);
         }
     }
 }
@@ -206,11 +209,8 @@ fn conflict_occurs(conflict_name: &str, conflict_versions: &str, loaded_mods: &[
     })
 }
 
-#[expect(clippy::todo)]
-fn run_mod(
-    _app: &App,
-    _mod_data: &ModData,
-    _engine: &Engine,
-) -> Result<(), Box<dyn std::error::Error>> {
-    todo!();
+#[inline]
+#[expect(clippy::todo, unused)]
+fn add_mod(app: &mut App, mod_data: &ModData, engine: Engine) {
+    app.add_systems(get_mod_load_schedule(), move || todo!());
 }
