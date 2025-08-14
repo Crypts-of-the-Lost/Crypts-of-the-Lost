@@ -121,6 +121,7 @@ impl Plugin for ModdingPlugin {
     }
 }
 
+#[inline]
 fn check_dependencies(
     mod_data: &ModData,
     loaded_mods: &[ModData],
@@ -155,6 +156,7 @@ fn check_dependencies(
     Ok(())
 }
 
+#[inline]
 fn dependencies_match(
     dependency_name: &str,
     dependency_data: &DependencyData,
@@ -192,6 +194,7 @@ fn dependencies_match(
     })
 }
 
+#[inline]
 fn conflict_occurs(conflict_name: &str, conflict_versions: &str, loaded_mods: &[ModData]) -> bool {
     let Ok(conflict_versions) = semver::VersionReq::parse(conflict_versions) else {
         return false;
