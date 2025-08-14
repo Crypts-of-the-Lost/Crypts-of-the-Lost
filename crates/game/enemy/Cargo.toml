@@ -1,0 +1,15 @@
+[package]
+name = "enemy"
+version = "0.1.0"
+edition = "2024"
+description = "Crypt of the Lost enemy logic"
+license-file = "../../LICENSE"
+repository = "https://github.com/Sietse2202/crypts-of-the-lost"
+readme = "../../../README.md"
+keywords = ["config"]
+categories = ["games"]
+
+[dependencies]
+
+[lints]
+workspace = true
