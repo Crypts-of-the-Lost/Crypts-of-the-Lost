@@ -2,7 +2,7 @@
 // Copyright (C) 2025 Crypts of the Lost Team
 
 //! # `CLI`
-//! Defines the `CLI` struct used to provided the TOML config file path
+//! Defines the `CLI` struct used to provide the TOML config file path
 //! and to overwrite settings from it. Will be read from
 
 use crate::config::network::NetworkConfig;
