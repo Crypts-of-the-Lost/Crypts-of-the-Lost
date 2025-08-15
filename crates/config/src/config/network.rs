@@ -4,11 +4,10 @@
 //! `NetworkConfig`
 //! `NetworkConfig` struct for settings used by the network systems.
 
-use clap::Args;
 use std::{net::SocketAddr, path::PathBuf};
 
 /// `NetworkConfig` struct for setting concerning the network systems
-#[derive(Debug, Clone, serde::Deserialize, serde::Serialize, Args)]
+#[derive(Debug, Clone, serde::Deserialize)]
 pub struct NetworkConfig {
     /// Socket to bind the server to
     pub socket: SocketAddr,

@@ -10,10 +10,9 @@ keywords = ["config"]
 categories = ["games"]
 
 [dependencies]
-clap.workspace = true
-serde = { version = "1.0.219", features = ["derive"] }
+serde.workspace = true
 bevy.workspace = true
-konfik = "0.1.2"
+konfik = "0.1"
 
 [lints]
 workspace = true

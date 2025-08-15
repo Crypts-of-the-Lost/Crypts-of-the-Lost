@@ -19,8 +19,6 @@ const TPS: f64 = 16.;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    setup_logging();
-
     let config = parse_config()?;
 
     setup_logging(&config.logging);
