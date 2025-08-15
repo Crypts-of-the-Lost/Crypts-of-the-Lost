@@ -9,9 +9,10 @@ pub mod network;
 
 use crate::config::network::NetworkConfig;
 use bevy::ecs::resource::Resource;
+use konfik::Config;
 
 /// The main `Config` struct used to configure the server.
-#[derive(Debug, Resource, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, Resource, serde::Serialize, serde::Deserialize, Config)]
 pub struct Config {
     /// Maximum amount of players on the server
     pub max_players: u32,
