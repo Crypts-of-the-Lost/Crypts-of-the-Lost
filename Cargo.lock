@@ -928,6 +928,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "mods"
+version = "0.1.0"
+dependencies = [
+ "bevy",
+]
+
+[[package]]
 name = "network"
 version = "0.1.0"
 dependencies = [
