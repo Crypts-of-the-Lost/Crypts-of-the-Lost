@@ -10,7 +10,14 @@ keywords = ["network"]
 categories = ["games"]
 
 [dependencies]
-bevy = { workspace = true }
+semver = "1.0.26"
+serde = { version = "1.0.219", features = ["derive"] }
+paq = "1.1.1"
+toml = "0.9.5"
+sysinfo = "0.37.0"
+rhai = { version = "1.22.2", features = ["internals"] }
+bevy.workspace = true
+tracing.workspace = true
 
 [lints]
 workspace = true
